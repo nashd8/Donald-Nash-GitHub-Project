@@ -9,10 +9,10 @@ These files have been tested and used to generate a live ELK deployment on Azure
 Resources
 Playbook Files
 
-[Elk Playbook File](Ansible/elk.yml)
-[DVWA Playbook File](Ansible/dvwa.yml)
-[Filebeat Playbook File](Ansible/filebeat.yml)
-[Metricbeat Playbook File](Ansible/metricbeat.yml)
+- _[Elk Playbook File](Ansible/elk.yml)_
+- _[DVWA Playbook File](Ansible/dvwa.yml)_
+- _[Filebeat Playbook File](Ansible/filebeat.yml)_
+- _[Metricbeat Playbook File](Ansible/metricbeat.yml)_
 
 This document contains the following details:
 - Description of the Topology
