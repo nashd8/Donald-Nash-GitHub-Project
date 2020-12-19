@@ -4,7 +4,7 @@ The files in this repository were used to configure the network depicted below.
 
 ![TODO: Update the path with the name of your diagram](Diagrams/Cloud_Infrastructure.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
   - _TODO: Enter the playbook file._
 
@@ -21,29 +21,29 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly available and reliable, in addition to restricting hackers to the network.
-- _TODO: Load Balancers offer additional levels of security to your web applications via a Web Application Firewall, as well as protecting against DDoS attacks by distributing requests equally to each server. Further, health probes ensure that if a response is not received by a server in the Load Balancers back end pool that no further traffic will be sent to that server, as it will assume the server is dead._
+Load balancing ensures that the application will be highly available and reliable, in addition to restricting hackers and unwanted traffic to the network.
+- Load Balancers offer additional levels of security to your web applications via a Web Application Firewall, as well as protecting against DDoS attacks by distributing requests equally to each server. Further, health probes ensure that if a response is not received by a server in the Load Balancers back end pool that no further traffic will be sent to that server, as it will assume the server is dead._
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the logs and system traffic.
-- _TODO: Filebeat watches for log events and is used to monitor log files and forward to logstash for indexing_
-- _TODO: Metricbeat watches for metrics from the operating system, containers and services running on the servers_
+- _Filebeat watches for log events and is used to monitor log files and forward to logstash for indexing_
+- _Metricbeat watches for metrics from the operating system, containers and services running on the servers_
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+|    Name      |  Function   | IP Address |   Operating System   |
+|--------------|-------------|------------|----------------------|
+| Jump Box     |   Gateway   |  10.0.0.4  | Linux (Ubuntu 18.04) |
+| Web Server 1 | Application |  10.0.0.5  | Linux (Ubuntu 18.04) |
+| Web Server 2 | Application |  10.0.0.6  | Linux (Ubuntu 18.04) |
+| ELK Server   |    Logs     |  10.1.0.4  | Linux (Ubuntu 18.04) |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the Jumpbox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- _135.23.84.40_
 
 Machines within the network can only be accessed by _____.
 - _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
@@ -52,7 +52,7 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
+| Jump Box | Yes/No              | 10.0.0.5 10.0.0.6    |
 |          |                     |                      |
 |          |                     |                      |
 
