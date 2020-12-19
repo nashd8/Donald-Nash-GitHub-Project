@@ -105,13 +105,21 @@ SSH into the control node and follow the steps below:
 - Update the filebeat-config.yml file to include the following
     - username and password
     - Go to line #1106 and replace the IP address with the IP address of your ELK machine/elasticsearch port.
+      
       output.elasticsearch:
+      
       hosts: ["10.1.0.4:9200"]
+      
       username: "elastic"
+      
       password: "changeme"
+
     - Go to line #1806 and replace the IP address with the IP address of your ELK machine/kibana port.
+     
       setup.kibana:
+      
       host: "10.1.0.4:5601"
+      
     - save this file to /etc/ansible/filebeat-config.yml
 
 - Run the playbook, and navigate to kibana to check that the installation worked as expected.
