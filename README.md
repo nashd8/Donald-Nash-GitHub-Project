@@ -101,13 +101,39 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the filebeat-config.yml file to /etc/ansible in your ansible container. _Note: you may also run the curl command to download the config file: curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml_
+- Update the filebeat-config.yml file to include the following
+    - username and password
+    - Go to line #1106 and replace the IP address with the IP address of your ELK machine/elasticsearch port.
+      output.elasticsearch:
+      hosts: ["10.1.0.4:9200"]
+      username: "elastic"
+      password: "changeme"
+    - Go to line #1806 and replace the IP address with the IP address of your ELK machine/kibana port.
+      setup.kibana:
+      host: "10.1.0.4:5601"
+    - save this file to /etc/ansible/filebeat-config.yml
+
+- Run the playbook, and navigate to kibana to check that the installation worked as expected.
 
 _TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+- The 'filebeat playbook file' listed under 'Resources' at the top of this document is the playbook file, this file should be copied to /etc/ansible in your ansible container.
+- To make Ansible run a playbook on a specific machine, we must first update the 'hosts' file in the ansible container under /etc/ansible. In this config file we can add specific servers with IP addresses to allow playbooks to be run on specific machines. We then specify the host in the playbook in order for it to run on those specified machines. 
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+The following screenshot displays the 'hosts' configuration file with webservers and elkservers
+
+![Hosts config file](Images/hosts_config_file.png)
+
+We then specify either 'webservers' or 'elkservers' in the playbook yaml file to specify which machine to install the ELK over which machines to install our beats. Please review playbooks under resources at the beginning of this document for reference.
+
+- To ensure the ELK server is running, navigate to the following URL http://52.255.141.157:5601/app/kibana#/home?_g=() _Note: This may vary depending on your ELK servers public IP address_
+
+### Bonus: Commands to download and run Elk playbook to install elk container
+_Specific commands the user will need to run to download the playbook, update the files, etc._
+
+- SSH into your Ansible control node
+- cd /etc/ansible  _Note: command to change directory within ansible container_ 
+- curl -O https://raw.githubusercontent.com/nashd8/Donald-Nash-GitHub-Project/main/Ansible/elk.yml _Note: command to download raw .yml file from this page_
+- nano hosts _Note: command to edit hosts file with specified servers_
+- nano elk.yml _Note: command to edit downloaded .yml file to change hosts_
+- ansible-playbook ./elk.yml _Note: command to run the playbook_
