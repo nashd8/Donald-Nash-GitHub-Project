@@ -119,12 +119,11 @@ SSH into the control node and follow the steps below:
       setup.kibana:
       
       host: "10.1.0.4:5601"
-      
+
     - save this file to /etc/ansible/filebeat-config.yml
 
 - Run the playbook, and navigate to kibana to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
 - The 'filebeat playbook file' listed under 'Resources' at the top of this document is the playbook file, this file should be copied to /etc/ansible in your ansible container.
 - To make Ansible run a playbook on a specific machine, we must first update the 'hosts' file in the ansible container under /etc/ansible. In this config file we can add specific servers with IP addresses to allow playbooks to be run on specific machines. We then specify the host in the playbook in order for it to run on those specified machines. 
 
